@@ -32,7 +32,7 @@
 
 using namespace std;
 
-namespace fs = filesystem;
+namespace fs = std::filesystem;
 
 /**
  * @struct MerkleNode
@@ -110,7 +110,7 @@ private:
      */
     string sha256(const string &data);
 
-    mutable int cachedDepth = -1; // Cached depth value for performance
+    mutable int cachedDepth; // Cached depth value for performance
 };
 
 /**
@@ -254,7 +254,7 @@ private:
      * @param depth Current depth for indentation
      * @return JSON string representation of the node
      */
-    string nodeToJson(shared_ptr<MerkleNode> node, int depth = 0);
+    string nodeToJson(shared_ptr<MerkleNode> node, int depth = 0) const;
 
     /**
      * @brief Calculate statistics recursively
@@ -263,7 +263,7 @@ private:
      * @param directories Reference to directory count
      * @param totalSize Reference to total size
      */
-    void calculateStatsRecursive(shared_ptr<MerkleNode> node, size_t &files, size_t &directories, size_t &totalSize);
+    void calculateStatsRecursive(shared_ptr<MerkleNode> node, size_t &files, size_t &directories, size_t &totalSize) const;
 
     /**
      * @brief Verify node integrity recursively
