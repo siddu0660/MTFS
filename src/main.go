@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"log"
 
+	ui "MTFS/ui"
+
 	"github.com/gdamore/tcell/v2"
 )
 
@@ -142,7 +144,7 @@ func (a *App) handleEvent(ev tcell.Event) {
 			close(a.quit)
 		case tcell.KeyEnter:
 			if a.focus == 0 {
-				close(a.quit)
+				ui.NewMerkleTUI().Run()
 			}
 		case tcell.KeyRune:
 			switch ev.Rune() {
